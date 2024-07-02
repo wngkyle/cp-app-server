@@ -1,0 +1,5 @@
+build
+dist
+__pycache__
+server.spec
+.DS_Store
