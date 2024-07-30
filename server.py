@@ -244,6 +244,12 @@ def getProgress():
     result = [count, progressStatements]
     return result
 
+# Reset the variable processed, so all folders are visible in the folder selection tab
+@app.route('/reset-variable-processed')
+def resetVariableProcessed():
+    processed.clear()
+    return 'Variable Processed Reset'
+
 # Remove the created content in the folder but doesn't delete the folder if the process is canceled half way
 @app.route('/remove-processed-folder-content')
 def removeProcessedFolderContent():
