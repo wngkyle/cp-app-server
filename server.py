@@ -245,9 +245,15 @@ def getProgress():
     return result
 
 # Reset the variable processed, so all folders are visible in the folder selection tab
-@app.route('/reset-variable-processed')
-def resetVariableProcessed():
+@app.route('/reset-variable-processed-and-remove-all-processed-folder')
+def resetVariableProcessedAndDelete():
     processed.clear()
+    cwd = getCurrWork() 
+    listOfDir = os.scandir(cwd)
+    for folder in listOfDir:
+        if "Processed" in folder.name:
+            folderPath = os.path.join(cwd, folder.name)
+            shutil.rmtree(folderPath)
     return 'Variable Processed Reset'
 
 # Remove the created content in the folder but doesn't delete the folder if the process is canceled half way
